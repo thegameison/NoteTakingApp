@@ -3,16 +3,17 @@ package com.example.notetakingapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Calendar;
+
 
 public class CreateNote extends AppCompatActivity {
     EditText title;
@@ -37,15 +38,23 @@ public class CreateNote extends AppCompatActivity {
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { //CHANGE VARIABLE NAMES SO WE CAN AVOID PLAGIARIZE
                 Note newNote = new Note(pathS);
                 newNote.setDate(Calendar.getInstance().getTime());
                 newNote.setTitle(title.getText().toString());
-
+                Log.w("CreateNote", "Note object has been created");
+                try {
+                    HttpAsyncTask task = new HttpAsyncTask();
+                    task.execute(pathS);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
                 Intent toMain = new Intent(v.getContext(), MainActivity.class);
                 toMain.putExtra("NoteOb", newNote);
                 startActivity(toMain);
             }
         });
+
+
     }
 }
