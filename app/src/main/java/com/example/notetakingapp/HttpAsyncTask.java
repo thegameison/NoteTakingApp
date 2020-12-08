@@ -18,7 +18,7 @@ import java.util.Iterator;
 import javax.net.ssl.HttpsURLConnection;
 
 public class HttpAsyncTask extends AsyncTask<String, Integer, HashSet<String>> {
-    private static final String subscriptionKey = "0573248bd8834a59a5d2c2985f11490f"; // CENSOR OUT THIS KEY FOR PRIVACY
+    private static final String subscriptionKey = "################################";
     private static final String endpoint = ("https://a1notetaker.cognitiveservices.azure.com/");
     private static final String path = "vision/v2.0/read/core/asyncBatchAnalyze";
     HashSet<String> words;
